@@ -1,0 +1,47 @@
+@startuml TP Containers
+title TP Containers - Grupo 1
+
+class Barco {
+    - id: Integer
+    - cantContainers: Integer
+    - pesoMax: Double
+    + descargarContainer()
+}
+
+class BarcoBasico extends Barco {
+
+}
+
+class BarcoGeneral extends Barco {
+    
+}
+
+class Camion {
+    - container: Container
+    + entregarContainer()
+}
+
+class Container {
+    - id: Integer
+    - precio: Float
+    - precioBase: Float
+    + obtenerPrecioFinal()
+}
+
+class ContainerBasico extends Container {
+
+}
+
+class ContainerBasicoHC extends Container {
+
+}
+
+class ContainerFlatRack extends Container {
+
+}
+
+class ModuloGPS {
+    
+}
+
+@enduml
