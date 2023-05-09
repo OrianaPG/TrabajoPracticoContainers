@@ -1,47 +1,99 @@
-@startuml TP Containers
-title TP Containers - Grupo 1
-
-class Barco {
-    - id: Integer
-    - cantContainers: Integer
-    - pesoMax: Double
-    + descargarContainer()
+@startuml
+class Empresa {
+    +nombre: string
+    +sedes: list<Sede>
+    +barcos: list<Barco>
+    +camiones: list<Camion>
+    +camionesDisponibles : int // 5 default
+    +containers: list<Contenedor>
+    +enviarContainer(origen: Sede, destino: Sede, container: Contenedor): void
 }
 
-class BarcoBasico extends Barco {
-
+class Sede {
+    +nombre: string
+    +ubicacion: string
+    +containers: list<Contenedor>
+    +agregarContainer(container: Contenedor): void
+    +eliminarContainer(container: Contenedor): void
 }
 
-class BarcoGeneral extends Barco {
-    
+abstract class Barco {
+    +id: int
+    +maxContainers: int
+    +maxPeso: float
+    +containers: list<Contenedor>
+    +agregarContainer(container: Contenedor): boolean
+    +eliminarContainer(container: Contenedor): boolean
+    +getCantidadContainers(): int
+    +getPesoContainers(): float
+}
+
+class BarcoBasico {
+    -medidas: Medidas
+}
+
+class BarcoEspecializado {
+    -medidas: Medidas
+}
+
+class Medidas {
+    -ancho: float
+    -alto: float
+    -largo: float
 }
 
 class Camion {
-    - container: Container
-    + entregarContainer()
+    +id: int
+    +container: Contenedor //si esta en null significa q esta disponible
+    +entregarContainer(): void //este metodo vuelve a poner container en null
 }
 
-class Container {
-    - id: Integer
-    - precio: Float
-    - precioBase: Float
-    + obtenerPrecioFinal()
+abstract class Contenedor {
+    +id: int
+    +tipo: string
+    +precioBase: float
+    +precioCarga: float
+    +pesoMax: float
+    +volumenMax: float
 }
 
-class ContainerBasico extends Container {
-
+class ContenedorBasico {
+    -medidas: Medidas
 }
 
-class ContainerBasicoHC extends Container {
-
+class ContenedorBasicoHC {
+    -medidas: Medidas
 }
 
-class ContainerFlatRack extends Container {
-
+class ContenedorFlatRack {
+    -medidas: Medidas
 }
 
-class ModuloGPS {
-    
+class GPS {
+    +calcularDistancia() : float
 }
+GPS o-- Sede
+Empresa o-- Sede
+Empresa o-- Barco
+Empresa o-- Camion
+Empresa o-- Contenedor
 
+Sede "1" o-- "*" Contenedor
+
+Barco <|-- BarcoBasico
+Barco <|-- BarcoEspecializado
+
+Barco "1" o-- "*" Contenedor
+
+Camion "1" -- "1" Contenedor
+
+Contenedor <|-- ContenedorBasico
+Contenedor <|-- ContenedorBasicoHC
+Contenedor <|-- ContenedorFlatRack
+
+Contenedor "1" o-- "1" Medidas
+BarcoBasico "1" o-- "1" Medidas
+BarcoEspecializado "1" o-- "1" Medidas
+ContenedorBasicoHC "1" o-- "1" Medidas
+ContenedorFlatRack "1" o-- "1" Medidas
 @enduml
