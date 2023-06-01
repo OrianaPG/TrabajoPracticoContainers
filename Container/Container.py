@@ -1,7 +1,9 @@
+from abc import ABC
+
 from Medidas import Medidas
 
 
-class Container:
+class Container(ABC):
     def __init__(self, id, alto_int, ancho_int, ancho_ext, largo_int, alto_ext, largo_ext):
         self.__id = id
         self.__exterior = Medidas(ancho_ext, largo_ext, alto_ext)
@@ -37,6 +39,12 @@ class Container:
 
     def get_peso_max(self):
         return self.__peso_max
+
+    def set_pies(self, pies):
+        self.__pies = pies
+
+    def get_pies(self):
+        return self.__pies
 
     """def calcular_costo_total(self, distancia, container_completo):
         if container_completo:
