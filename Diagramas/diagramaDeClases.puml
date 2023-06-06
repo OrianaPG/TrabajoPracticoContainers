@@ -22,8 +22,8 @@ abstract class Barco {
     +maxContainers: int
     +maxPeso: float
     +containers: list<Contenedor>
-    +agregarContainer(container: Contenedor): boolean
-    +eliminarContainer(container: Contenedor): boolean
+    +agregarContainer(container: Contenedor): void ////si esta disponible agrega el conteiner, si no tira msj de error
+    +eliminarContainer(container: Contenedor): void
     +getCantidadContainers(): int
     +getPesoContainers(): float
 }
@@ -44,8 +44,9 @@ class Medidas {
 
 class Camion {
     +id: int
-    +container: Contenedor //si esta en null significa q esta disponible
-    +entregarContainer(): void //este metodo vuelve a poner container en null
+    +container: Contenedor 
+    +entregarContenedor(): void // elimina el conteiner del camion
+    +agregarContenedor(): void //si esta disponible agrega el conteiner (lo chequea en este mismo metodo), si no tira msj de error
 }
 
 abstract class Contenedor {
@@ -72,6 +73,11 @@ class ContenedorFlatRack {
 class GPS {
     +calcularDistancia() : float
 }
+
+class calculadoraGanacias {
+    +calcularGanancias() : Float
+}
+
 GPS o-- Sede
 Empresa o-- Sede
 Empresa o-- Barco
