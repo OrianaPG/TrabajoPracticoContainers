@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from Barcos.Basico import Basico
-from Container.ContenedorBasico import ContenedorBasico
-from Container.Container import Container
-from Carga import Carga
+from Clases.Barcos.Basico import Basico
+from Clases.Container.ContenedorBasico import ContenedorBasico
+from Clases.Container.Container import Container
+from Clases.Carga import Carga
 
 def test_calcular_precio_transporte():
     #retira container en el puerto

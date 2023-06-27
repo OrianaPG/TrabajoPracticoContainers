@@ -1,9 +1,8 @@
 from unittest import TestCase
 
-from Barcos.Basico import Basico
-from Container.ContenedorBasico import ContenedorBasico
-from MockObj.GPSMock import GPSMock
-
+from Clases.Barcos.Basico import Basico
+from Clases.Container.ContenedorBasico import ContenedorBasico
+from Clases.MockObj.GPSMock import GPSMock
 
 class TestBarcos(TestCase):
     def test_obtener_distancia_recorrida(self):
@@ -14,4 +13,3 @@ class TestBarcos(TestCase):
         distancia = distancia(gps, "sede1", "sede2") # "calcula" la distancia
 
         self.assertEqual(distancia, 150) # chequea el resultado
-
