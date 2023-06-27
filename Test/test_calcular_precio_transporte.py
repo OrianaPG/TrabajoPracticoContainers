@@ -39,3 +39,4 @@ class test_calcular_precio_transporte(TestCase):
         carga = Carga(4, peso, 1, 3, 5, 20)
         precio_esperado = 500 // 100 * 1500 #7500, 1500 cda 100kg
         assert CalculadoraPrecio.calcular_costo_total(distancia, contenedor_completo, carga, peso) == precio_esperado
+
