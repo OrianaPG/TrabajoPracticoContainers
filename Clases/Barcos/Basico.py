@@ -1,8 +1,8 @@
 from abc import ABC
 
-from Barcos.Barco import Barco
-from Container.Container import Container
-from MockObj.GPSMock import GPSMock
+from ..Barcos.Barco import Barco
+from ..Container.Container import Container
+from ..MockObj.GPSMock import GPSMock
 
 class Basico(Barco, ABC):
     def __init__(self):

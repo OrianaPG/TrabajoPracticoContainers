@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from Excepciones.ContainerExcedePeso import ContainerExcedePeso
+from ..Excepciones.ContainerExcedePeso import ContainerExcedePeso
 
 class Barco(ABC):
     def __init__(self, id, max_container, max_peso):

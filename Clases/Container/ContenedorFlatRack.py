@@ -1,4 +1,4 @@
-from Container.Container import Container
+from ..Container.Container import Container
 
 class ContenedorFlatRack(Container):
     def __init__(self, id):

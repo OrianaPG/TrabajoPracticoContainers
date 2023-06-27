@@ -1,4 +1,4 @@
-from Medidas import Medidas
+from .Medidas import Medidas
 
 class Carga:
     def __init__(self, id, peso, ancho, largo, alto, volumen):

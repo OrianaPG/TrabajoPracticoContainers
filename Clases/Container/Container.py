@@ -1,7 +1,6 @@
 from abc import ABC
 
-from Medidas import Medidas
-
+from ..Medidas import Medidas
 
 class Container(ABC):
     def __init__(self, id, alto_int, ancho_int, ancho_ext, largo_int, alto_ext, largo_ext):
