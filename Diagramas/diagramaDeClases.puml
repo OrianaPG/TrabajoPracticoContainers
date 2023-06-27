@@ -80,7 +80,11 @@ class GPS {
 }
 
 class calculadoraGanacias {
-    + calcularGanancias() : Float
+    + calcularGanancias() : float
+}
+
+class CalculadoraPrecio() {
+    + calcular_costo_total(): int
 }
 
 GPS o-- Sede
@@ -107,4 +111,6 @@ BarcoBasico "1" o-- "1" Medidas
 BarcoEspecializado "1" o-- "1" Medidas
 ContenedorBasicoHC "1" o-- "1" Medidas
 ContenedorFlatRack "1" o-- "1" Medidas
+
+Empresa o--calculadoraGanacias
 @enduml
