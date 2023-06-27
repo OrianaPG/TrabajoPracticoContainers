@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from Excepciones.ContainerExcedePeso import ContainerExcedePeso
 
 class Barco(ABC):
     def __init__(self, id, max_container, max_peso):
@@ -81,12 +81,13 @@ class Barco(ABC):
     def descargar(self):
         pass
 
-    """
     def cargar_container(self, container):
         if len(self.containers) < self.max_container and self.max_peso >= sum(
                 [cont.peso for cont in self.containers]) + container.peso:
             self.containers.append(container)
-
+        else:
+            raise ContainerExcedePeso('El contenedor excede el peso máximo del barco o el barco está ocupado.')
+    
     def cantidad_containers(self):
         cantidad = 0
         for c in self.containers:
@@ -98,4 +99,3 @@ class Barco(ABC):
         for c in self.containers:
             peso_containers = peso_containers + c.peso
         return peso_containers
-    """

@@ -3,7 +3,6 @@ from abc import ABC
 from Barcos.Barco import Barco
 from MockObj.GPSMock import GPSMock
 
-
 class Especializado(Barco, ABC):
     def __init__(self):
         super().__init__()

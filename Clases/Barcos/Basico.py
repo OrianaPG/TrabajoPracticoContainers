@@ -4,7 +4,6 @@ from Barcos.Barco import Barco
 from Container.Container import Container
 from MockObj.GPSMock import GPSMock
 
-
 class Basico(Barco, ABC):
     def __init__(self):
         super().__init__()

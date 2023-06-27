@@ -5,7 +5,7 @@ from Clases.Container.ContenedorBasico import ContenedorBasico
 from Clases.Container.Container import Container
 from Clases.Carga import Carga
 
-def test_calcular_precio_transporte():
+def test_calcular_precio_transporte(TestCase):
     #retira container en el puerto
     distancia = 80 
     contenedor_completo = True
