@@ -7,13 +7,11 @@ from MockObj.GPSMock import GPSMock
 
 class TestBarcos(TestCase):
     def test_obtener_distancia_recorrida(self):
-        distancia = GPSMock()
-        barco: Basico = Basico()
-        container = ContenedorBasico(5)
-        barco.cargar(container)
-        distancia = 1000
-        barco.set_distancia(barco.get_distancia() + distancia)
+        gps = GPSMock() #creo el mock
 
-        assert distancia > 0
-        print(f"la distancia recorrida es {distancia}km")
+        gps.distancia = GPSMock(return_value = 150) #valor inventdo 
+
+        distancia = distancia(gps, "sede1", "sede2") # "calcula" la distancia
+
+        self.assertEqual(distancia, 150) # chequea el resultado
 
