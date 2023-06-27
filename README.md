@@ -2,10 +2,16 @@
 
 ## Integrantes
 
-- Bontomasi, Augusto
-- González, Nicolás
 - Graña, María Sol
 - Pierucci Gandini, Oriana
+
+## To do
+
+- [ ] Cambiar nombre excepción ContainerExcedePeso()
+- [ ] Crear excepción de CargaExcedeMedidasPesoContainer
+- [ ] Hacer más legible la función cargar_container de Barco
+- [ ] Actualizar el diagrama de clases con todas las funciones
+- [ ] Crear función que "calcule" la distancia recorrida
 
 ## Introducción
 
@@ -34,5 +40,3 @@ Desarrollar una aplicación que permita emular la situación planteada y su solu
 
 La aplicación debe contar con un set de pruebas unitarias que permitan validar la ejecución de la misma.
 Además de los planteados, deben agregarse otros casos, como los que fallan por no cumplir alguna regla de negocio.
-
-Agregar GPS como mock object, sedes, clientes.
