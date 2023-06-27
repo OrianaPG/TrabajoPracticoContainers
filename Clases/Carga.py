@@ -1,6 +1,5 @@
 from Medidas import Medidas
 
-
 class Carga:
     def __init__(self, id, peso, ancho, largo, alto, volumen):
         self.__id = id

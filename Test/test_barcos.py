@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from Barcos.Basico import Basico
-from Container.ContenedorBasico import ContenedorBasico
-from MockObj.GPSMock import GPSMock
+from Clases.Barcos.Basico import Basico
+from Clases.Container.ContenedorBasico import ContenedorBasico
+from Clases.MockObj.GPSMock import GPSMock
 
 
 class TestBarcos(TestCase):

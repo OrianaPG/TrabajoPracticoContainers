@@ -1,81 +1,86 @@
-@startuml
+@startuml Containers
+
 class Empresa {
-    +nombre: string
-    +sedes: list<Sede>
-    +barcos: list<Barco>
-    +camiones: list<Camion>
-    +camionesDisponibles : int // 5 default
-    +containers: list<Contenedor>
-    +enviarContainer(origen: Sede, destino: Sede, container: Contenedor): void
+    - nombre: string
+    - sedes: list<Sede>
+    - barcos: list<Barco>
+    - camiones: list<Camion>
+    - camionesDisponibles : int // 5 default
+    - containers: list<Contenedor>
+
+    + enviarContainer(origen: Sede, destino: Sede, container: Contenedor): void
 }
 
 class Sede {
-    +nombre: string
-    +ubicacion: string
-    +containers: list<Contenedor>
-    +agregarContainer(container: Contenedor): void
-    +eliminarContainer(container: Contenedor): void
+    - nombre: string
+    - ubicacion: string
+    - containers: list<Contenedor>
+
+    + agregarContainer(container: Contenedor): void
+    + eliminarContainer(container: Contenedor): void
 }
 
 abstract class Barco {
-    +id: int
-    +maxContainers: int
-    +maxPeso: float
-    +containers: list<Contenedor>
-    +agregarContainer(container: Contenedor): void ////si esta disponible agrega el conteiner, si no tira msj de error
-    +eliminarContainer(container: Contenedor): void
-    +getCantidadContainers(): int
-    +getPesoContainers(): float
+    - id: int
+    - maxContainers: int
+    - maxPeso: float
+    - containers: list<Contenedor>
+
+    + agregarContainer(container: Contenedor): void // si está disponible agrega el container, sino tira error
+    + eliminarContainer(container: Contenedor): void
+    + getCantidadContainers(): int
+    + getPesoContainers(): float
 }
 
 class BarcoBasico {
-    -medidas: Medidas
+    - medidas: Medidas
 }
 
 class BarcoEspecializado {
-    -medidas: Medidas
+    - medidas: Medidas
 }
 
 class Medidas {
-    -ancho: float
-    -alto: float
-    -largo: float
+    - ancho: float
+    - alto: float
+    - largo: float
 }
 
 class Camion {
-    +id: int
-    +container: Contenedor 
-    +entregarContenedor(): void // elimina el conteiner del camion
-    +agregarContenedor(): void //si esta disponible agrega el conteiner (lo chequea en este mismo metodo), si no tira msj de error
+    - id: int
+    - container: Contenedor 
+
+    + entregarContenedor(): void // elimina el container del camion
+    + agregarContenedor(): void // si está disponible agrega el container (lo chequea en este mismo metodo), si no tira error
 }
 
 abstract class Contenedor {
-    +id: int
-    +tipo: string
-    +precioBase: float
-    +precioCarga: float
-    +pesoMax: float
-    +volumenMax: float
+    - id: int
+    - tipo: string
+    - precioBase: float
+    - precioCarga: float
+    - pesoMax: float
+    - volumenMax: float
 }
 
 class ContenedorBasico {
-    -medidas: Medidas
+    - medidas: Medidas
 }
 
 class ContenedorBasicoHC {
-    -medidas: Medidas
+    - medidas: Medidas
 }
 
 class ContenedorFlatRack {
-    -medidas: Medidas
+    - medidas: Medidas
 }
 
 class GPS {
-    +calcularDistancia() : float
+    + calcularDistancia() : float
 }
 
 class calculadoraGanacias {
-    +calcularGanancias() : Float
+    + calcularGanancias() : Float
 }
 
 GPS o-- Sede
