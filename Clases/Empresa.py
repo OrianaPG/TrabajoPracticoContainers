@@ -6,10 +6,10 @@ from Container.Container import Container
 class Empresa:
     def __init__(self):
         self.__sedes = []
-        self.__barcos = []
-        self.__camiones = []
         self.__camiones_disponibles = 5
-        self.__containers = []
+        self.barcos = []
+        self.camiones = []
+        self.contenedores = []
 
     def get_sedes(self):
         return self.__sedes
@@ -44,3 +44,72 @@ class Empresa:
 
     def enviar_container(self, origen: Sede, destino: Sede, container: Container):
         pass
+
+    def agregarBarco(self, barco):
+        self.barcos.append(barco)
+
+    def agregarCamion(self, camion):
+        self.camiones.append(camion)
+
+    def agregarContenedor(self, contenedor):
+        self.contenedores.append(contenedor)
+
+    def calcularPrecioEnvio(self, distancia, container_completo, peso):
+      if distancia < 100:
+         if container_completo:
+            precio = 200000
+         else:
+            precio = (peso // 100) * 1000
+      elif distancia < 1000:
+        if container_completo:
+            precio = 210000
+        else:
+            precio = (peso // 100) * 1100
+      elif distancia < 10000:
+        if container_completo:
+            precio = 230000
+        else:
+            precio = (peso // 100) * 1150
+      else:
+        if container_completo:
+            precio = 250000
+        else:
+            precio = (peso // 100) * 1500
+
+      return precio
+
+    def encontrarContenedorMasViajesCompleto(self):
+        #encuentra el contenedor que hizo mas viajes completo
+        contadorContainer = {}
+        for contenedor in self.contenedores:
+           if contenedor.estaCompleto():
+              contenedorID = contenedor.getID()
+              contadorContainer[contenedorID] = contadorContainer.get(contenedorID, 0) + 1 #busca si ya esta el id en la lista, si no devuelve 0
+
+        contenedorMasViajesCompleto = max(contadorContainer, key=contadorContainer.get) #max busca el mayor valor segun contdorContiner.get
+        return contenedorMasViajesCompleto                                              #el .get obtiene los valores asociados a las claves en la lista
+
+    def encontrarBarcoMayorDistancia(self):
+        #encontrar el barco que hizo la mayor distancia
+        mayorDistancia = -1
+        barcoMayorDistancia = None
+        for barco in self.barcos:
+           distancia = barco.get_distancia()
+           if distancia > mayorDistancia:
+              mayorDistancia =distancia
+              barcoMayorDistancia = barco
+
+        return barcoMayorDistancia
+           
+
+    def encontrarBarcoMenorDistancia(self):
+        #encontrar el barco que hizo la menor distancia
+        menorDistancia = float('inf') 
+        barcoMenorDistancia = None
+        for barco in self.barcos:
+            distancia1 = barco.get_distancia()
+        if distancia1 < menorDistancia:
+            menorDistancia = distancia1
+            barcoMenorDistancia = barco
+    
+        return barcoMenorDistancia
