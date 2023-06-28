@@ -10,6 +10,7 @@ class Empresa:
         self.barcos = []
         self.camiones = []
         self.contenedores = []
+        self.viajesContenedor = []#va a guardar todos los viajes de los contenedores
 
     def get_sedes(self):
         return self.__sedes
@@ -18,16 +19,16 @@ class Empresa:
         self.__sedes.append(sede)
 
     def get_barcos(self):
-        return self.__barcos
+        return self.barcos
 
     def set_barcos(self, barcos: Barco):
-        self.__barcos.append(barcos)
+        self.barcos.append(barcos)
 
     def get_camiones(self):
-        return self.__camiones
+        return self.camiones
 
     def set_camiones(self, camiones: Camion):
-        self.__camiones.append(camiones)
+        self.camiones.append(camiones)
 
     def get_camiones_disponibles(self):
         disponible = 0
@@ -37,13 +38,13 @@ class Empresa:
         return disponible
     
     def get_containers(self):
-        return self.__containers
+        return self.contenedores
 
     def set_containers(self, containers: Container):
-        self.__containers.append(containers)
+        self.contenedores.append(contenedores)
 
-    def enviar_container(self, origen: Sede, destino: Sede, container: Container):
-        pass
+    def enviar_container(self, container: Container):
+        self.viajesContenedor.append(container)
 
     def agregarBarco(self, barco):
         self.barcos.append(barco)
@@ -81,7 +82,7 @@ class Empresa:
     def encontrarContenedorMasViajesCompleto(self):
         #encuentra el contenedor que hizo mas viajes completo
         contadorContainer = {}
-        for contenedor in self.contenedores:
+        for contenedor in self.viajesContenedor:
            if contenedor.estaCompleto():
               contenedorID = contenedor.getID()
               contadorContainer[contenedorID] = contadorContainer.get(contenedorID, 0) + 1 #busca si ya esta el id en la lista, si no devuelve 0
