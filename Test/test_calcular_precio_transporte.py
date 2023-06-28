@@ -20,7 +20,7 @@ class test_calcular_precio_transporte(TestCase):
         contenedor_completo = False 
         peso= 800
         carga = Carga(2, peso, 1, 3, 5, 13.2)
-        precio_esperado = 800 // 100 * 1150 #9200, cada 1150 cada 100kg
+        precio_esperado = 800 // 100 * 1150 + 20000 #29200, cada 1150 cada 100kg + precio del camion
         assert Empresa.calcularPrecioEnvio(distancia, contenedor_completo, carga.get_peso()) == precio_esperado
 
     def test_container_completo(self):
