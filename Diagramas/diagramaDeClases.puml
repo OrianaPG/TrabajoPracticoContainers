@@ -1,97 +1,128 @@
 @startuml Containers
-
 class Empresa {
-    - nombre: string
-    - sedes: list<Sede>
-    - barcos: list<Barco>
-    - camiones: list<Camion>
-    - camionesDisponibles : int // 5 default
-    - containers: list<Contenedor>
+    +nombre: string
+    +sedes: list<Sede>
+    +barcos: list<Barco>
+    +camiones: list<Camion>
+    +camionesDisponibles : int // 5 default
+    +containers: list<Contenedor>
 
-    + enviarContainer(origen: Sede, destino: Sede, container: Contenedor): void
+    +enviarContainer(origen: Sede, destino: Sede, container: Contenedor): void
 }
 
 class Sede {
-    - nombre: string
-    - ubicacion: string
-    - containers: list<Contenedor>
+    +nombre: string
+    +ubicacion: string
+    +containers: list<Contenedor>
 
-    + agregarContainer(container: Contenedor): void
-    + eliminarContainer(container: Contenedor): void
+    +agregarContainer(container: Contenedor): void
+    +eliminarContainer(container: Contenedor): void
 }
 
 abstract class Barco {
-    - id: int
-    - maxContainers: int
-    - maxPeso: float
-    - containers: list<Contenedor>
+    +id: int
+    +maxContainers: int
+    +maxPeso: float
+    -combustibleResatante: float
+    -tipoDispositivo: string
+    -maxCombustible: float
+    +containers: list<Contenedor>
 
-    + agregarContainer(container: Contenedor): void // si está disponible agrega el container, sino tira error
-    + eliminarContainer(container: Contenedor): void
-    + getCantidadContainers(): int
-    + getPesoContainers(): float
+    +agregarContainer(container: Contenedor): boolean
+    +eliminarContainer(container: Contenedor): boolean
+    +getCantidadContainers(): int
+    +getPesoContainers(): float
+    +getCombustibleRestante(): float
+    +getTipoDispositivo(): string
+    +cargarCombustible(cantidad: float) : void
+    +usarVelas(): void
 }
 
 class BarcoBasico {
-    - medidas: Medidas
+    -medidas: Medidas
 }
 
 class BarcoEspecializado {
-    - medidas: Medidas
+    -medidas: Medidas
 }
 
 class Medidas {
-    - ancho: float
-    - alto: float
-    - largo: float
+    -ancho: float
+    -alto: float
+    -largo: float
 }
 
 class Camion {
-    - id: int
-    - container: Contenedor 
+    +id: int
+    +container: Contenedor
+    +disponible: boolean
 
-    + entregarContenedor(): void // elimina el container del camion
-    + agregarContenedor(): void // si está disponible agrega el container (lo chequea en este mismo metodo), si no tira error
+    +entregarContainer(): void //este metodo vuelve a poner container en null
 }
 
 abstract class Contenedor {
-    - id: int
-    - tipo: string
-    - precioBase: float
-    - precioCarga: float
-    - pesoMax: float
-    - volumenMax: float
+    +id: int
+    +tipo: string
+    +precioBase: float
+    +precioCarga: float
+    +pesoMax: float
+    +volumenMax: float
 }
 
 class ContenedorBasico {
-    - medidas: Medidas
+    -medidas: Medidas
 }
 
 class ContenedorBasicoHC {
-    - medidas: Medidas
+    -medidas: Medidas
 }
 
 class ContenedorFlatRack {
-    - medidas: Medidas
+    -medidas: Medidas
+}
+
+class ContenedorVentilado extends Contenedor {
+    -medidas: Medidas
+}
+
+class ContenedorOpenTop extends Contenedor {
+    -medidas: Medidas
+}
+
+class Carga {
+    -tipo: string
+}
+class CargaQuimica extends Carga {
+
+}
+class CargaMaquinaria extends Carga {
+
+}
+class CargaAlimenticia extends Carga {
+
 }
 
 class GPS {
-    + calcularDistancia() : float
+    +calcularDistancia(origen, destino) : float
+    +calcularTiempo(origen, destino) : float
 }
 
-class calculadoraGanacias {
-    + calcularGanancias() : float
+class calculadoraGanancias {
+    +calcularGanancias(): float
 }
 
-class CalculadoraPrecio() {
-    + calcular_costo_total(): int
+class CalculadoraPrecio {
+    + calcularCostoTotal(): int
 }
 
-GPS o-- Sede
+GPS o-- Barco
+calculadoraGanancias o-- Empresa
+CalculadoraPrecio o-- Barco
 Empresa o-- Sede
 Empresa o-- Barco
 Empresa o-- Camion
 Empresa o-- Contenedor
+Contenedor o-- Carga
 
 Sede "1" o-- "*" Contenedor
 
@@ -111,6 +142,7 @@ BarcoBasico "1" o-- "1" Medidas
 BarcoEspecializado "1" o-- "1" Medidas
 ContenedorBasicoHC "1" o-- "1" Medidas
 ContenedorFlatRack "1" o-- "1" Medidas
-
-Empresa o--calculadoraGanacias
+ContenedorVentilado "1" o-- "1" Medidas
+ContenedorOpenTop "1" o-- "1" Medidas
+ContenedorBasico "1" o-- "1" Medidas
 @enduml
