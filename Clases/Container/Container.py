@@ -1,13 +1,14 @@
 from abc import ABC
 
-from Medidas import Medidas
-
+from ..Medidas import Medidas
+from ..Excepciones import CargaExcedeContainer, ContainerCompleto
+from ..Carga import Carga
 
 class Container(ABC):
     def __init__(self, id, alto_int, ancho_int, ancho_ext, largo_int, alto_ext, largo_ext):
         self.__id = id
-        self.__exterior = Medidas(ancho_ext, largo_ext, alto_ext)
-        self.__interior = Medidas(ancho_int, largo_int, alto_int)
+        self.__medidas_ext = Medidas(ancho_ext, largo_ext, alto_ext)
+        self.__medidas_int = Medidas(ancho_int, largo_int, alto_int)
         self.__peso_max = 0
         self.__pies = 0
         self.__peso_actual = 0
@@ -16,7 +17,11 @@ class Container(ABC):
         self.__cont_especial = False
         self.__completo = False
 
-    # agregar getters y setters
+    def get_medidas_ext(self):
+        return self.__medidas_ext
+    
+    def get_medidas_int(self):
+        return self.__medidas_int
 
     def set_cont_especial(self, especial):
         self.__cont_especial = especial
@@ -52,15 +57,20 @@ class Container(ABC):
     def getID(self):
         return self.__id
     
-    def puedeSubir(self, Carga):
+    def puedeSubir(self, carga: Carga):
         #chequea si puede subir
-        if self.estaCompleto() or Carga.peso > self.get_peso_max(): #falta chequear medidas
-            return False
-        else
-            return True    
+        if self.estaCompleto():
+            raise ContainerCompleto('El container está completo')
+        else:
+            if carga.get_peso > self.get_peso_max() and carga.get_medidas > self.get_medidas_int:
+                raise CargaExcedeContainer('La carga excede las dimensiones o el peso del container')
+            else:
+                return True
         
     def cargarContainer(self, Carga):
         #chequear si puede entrar la carga al contenedor
         if self.puedeSubir(self, Carga):
             #agregar la carga al container
-            self._completo = True
+            self.__completo = True
+        else:
+            self.__completo = False
