@@ -20,8 +20,12 @@ class empresa:
     def agregarContenedor(self, contenedor):
         self.contenedores.append(contenedor)
 
-    def enviar_container(self, origen: Sede, destino: Sede, container: Container):
-        self.viajesContenedor.append(Viaje(container))
+    #def enviar_container(self, origen: Sede, destino: Sede, container: Container):
+    #   self.viajesContenedor.append(Viaje(container))
+
+    def enviar_barco(self, origen, destino, barco: Barco):
+        for container in Barco.get_containers():
+             self.viajesContenedor.append(Viaje(container)) 
 
     def calcularPrecioEnvio(self, distancia, container_completo, peso):
       if distancia < 100:
