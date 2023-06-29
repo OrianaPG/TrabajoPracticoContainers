@@ -7,11 +7,15 @@ from ..Clases.Barcos.Basico import Basico
 
 class TestBarcos(TestCase):
     def test_obtener_distancia_recorrida(self):
-        gps = Mock() #creo el mock
-
-        gps.distancia.return_value = 150 #valor inventdo 
-
+        
+        #gps = Mock() #creo el mock
+        #gps.distancia.return_value = 150 #valor inventdo 
         # TODO: Crear función en Barco que "calcule" la distancia recorrida
-        distancia = Basico.get_distancia(gps, "sede1", "sede2") # "calcula" la distancia
+        #distancia = Basico.get_distancia(gps, "sede1", "sede2") # "calcula" la distancia
+        #self.assertEqual(distancia, 150) # chequea el resultado
 
-        self.assertEqual(distancia, 150) # chequea el resultado
+        gps = GPSMock()
+        distancia = gps.calcularDistancia("canada", "mexico")
+        tiempo = gps.calcularTiempoEnHoras("canada", "mexico")
+        self.assertEqual(distancia, 100)
+        self.assertEqual(tiempo, 2)
