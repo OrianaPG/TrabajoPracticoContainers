@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from ..Excepciones.ContainerNoPuedeSubirBarco import ContainerNoPuedeSubirBarco
 
 class Barco(ABC):
-    def __init__(self, id, max_container, max_peso):
+    def __init__(self, id, max_container, max_peso, max_combustible, tiene_velas):
         self.__id = id
         self.__max_container = max_container
         self.__max_peso = max_peso
@@ -12,6 +12,13 @@ class Barco(ABC):
         self.__distancia_recorrida = 0.0
         self.__sede_inicio = ''
         self.__sede_destino = ''
+
+        #para la 2d parte del TP
+        self.tiene_velas = tiene_velas
+        self.max_combustible = max_combustible
+        self.combustible = 0
+        self.usandoVela = False
+        self.usandoMotor = True
 
     def get_id(self):
         return self.__id
@@ -100,3 +107,42 @@ class Barco(ABC):
     def puedeSubir(self, container):
         peso_total_containers = self.peso_containers()
         return len(self.containers) < self.max_container and peso_total_containers + container.peso <=self.max_peso
+
+
+    
+    #metodos para la segunda parte del tp
+        
+    def cargar_combustible(self, cantidad):
+        self.combustible += cantidad
+        if self.combustible > self.max_combustible:
+            self.combustible = self.max_combustible
+
+    def usarVela(self):
+        if self.tiene_velas:
+            self.usandoVela = True
+            self.usandoMotor = False
+        else:
+            print("No tenes velas para usar")
+    
+    def usarMotor(self):
+            self.usandoVela = False
+            self.usandoMotor = True
+
+    def obtener_tipo_dispositivo(self):
+        if self.tiene_velas:
+            return "Vela"
+        else:
+            return "Motor"
+
+    def obtener_combustible_restante(self):
+        return self.combustible
+    
+    def consumir_combustible(self, horas):
+        if self.usandoVela:
+            print("El barco esta usando velas.")
+        else:
+            print("El barco esta usando el motor.")
+            consumo_combustible = horas * 6  # Consumo de combustible: 6L por hora
+            if consumo_combustible > self.combustible:
+                consumo_combustible = self.combustible  #el consumo no puede superar el combustible disponible
+            self.combustible -= consumo_combustible
