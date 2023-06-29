@@ -87,8 +87,8 @@ class Empresa:
               contenedorID = contenedor.getID()
               contadorContainer[contenedorID] = contadorContainer.get(contenedorID, 0) + 1 #busca si ya esta el id en la lista, si no devuelve 0
 
-        contenedorMasViajesCompleto = max(contadorContainer, key=contadorContainer.get) #max busca el mayor valor segun contdorContiner.get
-        return contenedorMasViajesCompleto                                              #el .get obtiene los valores asociados a las claves en la lista
+        contenedorMasViajesCompleto = max(contadorContainer, key=contadorContainer.get) #max devuelve el container(key) q tiene el valor máximo segun el resultado de container_counts.get
+        return contenedorMasViajesCompleto                                              #el .get obtiene los valores asociados a las key en la lista
 
     def encontrarBarcoMayorDistancia(self):
         #encontrar el barco que hizo la mayor distancia
