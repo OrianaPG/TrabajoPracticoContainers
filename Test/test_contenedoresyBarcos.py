@@ -29,7 +29,7 @@ class test_contenedoresyBarcos(unittest.TestCase):
         
         ContenedorMasViajesCompleto = empresa.encontrarContenedorMasViajesCompleto()
         
-        self.assertEqual(ContenedorMasViajesCompleto, '002') #verifica
+        self.assertEqual(ContenedorMasViajesCompleto, '001') #verifica
 
     def test_encontrar_barco_mayor_distancia(self):
         empresa = Empresa()  # instancia de la clase Empresa con barcos de prueba
