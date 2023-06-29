@@ -85,6 +85,7 @@ class Barco(ABC):
         if self.puedeSubir():
             self.containers.append(container)
         else:
+            raise ContainerExcedePeso('El contenedor excede el peso máximo del barco o el barco está ocupado.')
             raise ContainerNoPuedeSubirBarco('El contenedor excede el peso máximo del barco o el barco está ocupado.')
     
     def cantidad_containers(self):
