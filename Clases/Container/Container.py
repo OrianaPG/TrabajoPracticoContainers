@@ -56,6 +56,8 @@ class Container(ABC):
         #chequea si puede subir
         if self.estaCompleto() or Carga.peso > self.get_peso_max(): #falta chequear medidas
             return False
+        else
+            return True    
         
     def cargarContainer(self, Carga):
         #chequear si puede entrar la carga al contenedor
