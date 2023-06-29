@@ -7,7 +7,14 @@ class Empresa {
     +camionesDisponibles : int // 5 default
     +containers: list<Contenedor>
 
+    +agregarBarco(barco)
+    +agregarCamion(camion)
+    +agregarContenedor(contenedor)
     +enviarContainer(origen: Sede, destino: Sede, container: Contenedor): void
+    +encontrarContenedorMasViajesCompleto()
+    +encontrarBarcoMayorDistancia()
+    +encontrarBarcoMenorDistancia()
+    +calcularPrecioEnvio()
 }
 
 class Sede {
@@ -67,6 +74,11 @@ abstract class Contenedor {
     +precioCarga: float
     +pesoMax: float
     +volumenMax: float
+    -completo: boolean
+
+
+    +estaCompleto(): completo
+    +cargarContainer(Carga): void
 }
 
 class ContenedorBasico {
@@ -116,8 +128,11 @@ class CalculadoraPrecio {
 }
 
 class Viaje {
-container
-contenedorLleno
+    -container
+    -contenedorLleno
+
+    +getContenedor(): Contenedor
+    +getContenedorLleno() contenedorLleno
 }
 
 Empresa  o--  Viaje
