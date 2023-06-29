@@ -10,7 +10,7 @@ class Empresa {
     +agregarBarco(barco)
     +agregarCamion(camion)
     +agregarContenedor(contenedor)
-    +enviarContainer(origen: Sede, destino: Sede, container: Contenedor): void
+    +enviarBarco(origen: Sede, destino: Sede, barco: Barco): void
     +encontrarContenedorMasViajesCompleto()
     +encontrarBarcoMayorDistancia()
     +encontrarBarcoMenorDistancia()
@@ -35,8 +35,9 @@ abstract class Barco {
     -maxCombustible: float
     +containers: list<Contenedor>
 
-    +agregarContainer(container: Contenedor): boolean
-    +eliminarContainer(container: Contenedor): boolean
+    +cargar_container(container: Contenedor): void
+    +descargar():void
+    +puedeSubir(container:Container) Boolean
     +getCantidadContainers(): int
     +getPesoContainers(): float
     +getCombustibleRestante(): float
@@ -79,6 +80,7 @@ abstract class Contenedor {
 
     +estaCompleto(): completo
     +cargarContainer(Carga): void
+    +descargar(): void
 }
 
 class ContenedorBasico {
@@ -121,10 +123,6 @@ class GPS {
 
 class calculadoraGanancias {
     +calcularGanancias(): float
-}
-
-class CalculadoraPrecio {
-    + calcularCostoTotal(): int
 }
 
 class Viaje {

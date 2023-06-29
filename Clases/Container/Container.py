@@ -71,6 +71,10 @@ class Container(ABC):
         #chequear si puede entrar la carga al contenedor
         if self.puedeSubir(self, Carga):
             #agregar la carga al container
+            self.__carga.append(Carga)
             self.__completo = True
         else:
             self.__completo = False
+
+    def descargar(self):
+        self.__carga.clear()
