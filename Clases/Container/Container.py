@@ -1,6 +1,7 @@
 from abc import ABC
 
-from ..Medidas import Medidas
+from Medidas import Medidas
+
 
 class Container(ABC):
     def __init__(self, id, alto_int, ancho_int, ancho_ext, largo_int, alto_ext, largo_ext):
@@ -13,7 +14,7 @@ class Container(ABC):
         self.__max_vol = 0
         self.__vol = 0
         self.__cont_especial = False
-        self.__espacio = False
+        self.__completo = False
 
     # agregar getters y setters
 
@@ -44,19 +45,14 @@ class Container(ABC):
 
     def get_pies(self):
         return self.__pies
+    
+    def estaCompleto(self):
+        return self.__completo
 
-    """def calcular_costo_total(self, distancia, container_completo):
-        if container_completo:
-            precio = self.costo_base
-        else:
-            pass
-        if distancia < 100:
-            precio += 200000
-        elif distancia < 1000:
-            precio += 210000
-        elif distancia < 10000:
-            precio += 230000
-        else:
-            precio += 250000
-        return precio
-    """
+    def getID(self):
+        return self.__id
+    
+    def cargarContainer(self, Carga):
+        #chequear si puede entrar la carga al contenedor
+        # y si el container esta completo o no
+        pass
