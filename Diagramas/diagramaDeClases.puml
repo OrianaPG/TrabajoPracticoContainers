@@ -115,6 +115,13 @@ class CalculadoraPrecio {
     + calcularCostoTotal(): int
 }
 
+class Viaje {
+container
+contenedorLleno
+}
+
+Empresa  o--  Viaje
+
 GPS o-- Barco
 calculadoraGanancias o-- Empresa
 CalculadoraPrecio o-- Barco
