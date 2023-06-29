@@ -11,7 +11,7 @@
 - [x] Crear excepción de CargaExcedeContainer
 - [x] Hacer más legible la función cargar_container de Barco
 - [x] Actualizar el diagrama de clases con todas las funciones
-- [ ] Crear función que "calcule" la distancia recorrida (Mock, barco)
+- [x] Crear función que "calcule" la distancia recorrida (Mock, barco)
 
 ## Introducción
 
