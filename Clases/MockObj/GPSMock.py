@@ -1,4 +1,8 @@
 class GPSMock:
-    def distancia(self, origen, destino):
-        dist = destino - origen
-        return dist
+    def calcularDistancia(self, origen, destino):
+        distancia = 100 #invento
+        return distancia
+
+    def calcularTiempoEnHoras(self, origen, destino):
+        tiempo = 2.0 #invento
+        return tiempo
