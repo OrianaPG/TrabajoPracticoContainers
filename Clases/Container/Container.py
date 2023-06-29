@@ -5,7 +5,7 @@ from ..Excepciones import CargaExcedeContainer, ContainerCompleto
 from ..Carga import Carga
 
 class Container(ABC):
-    def __init__(self, id, alto_int, ancho_int, ancho_ext, largo_int, alto_ext, largo_ext):
+    def __init__(self, id, alto_int, ancho_int, ancho_ext, largo_int, alto_ext, largo_ext,tipo):
         self.__id = id
         self.__medidas_ext = Medidas(ancho_ext, largo_ext, alto_ext)
         self.__medidas_int = Medidas(ancho_int, largo_int, alto_int)
@@ -16,6 +16,7 @@ class Container(ABC):
         self.__vol = 0
         self.__cont_especial = False
         self.__completo = False
+        self.tipo = tipo
 
     def get_medidas_ext(self):
         return self.__medidas_ext
@@ -45,6 +46,12 @@ class Container(ABC):
     def get_peso_max(self):
         return self.__peso_max
 
+    def get_peso_actual(self):
+        return self.__peso_actual
+    
+    def set_peso_actual(self, peso):
+        self.__peso_actual += peso
+
     def set_pies(self, pies):
         self.__pies = pies
 
@@ -62,7 +69,7 @@ class Container(ABC):
         if self.estaCompleto():
             raise ContainerCompleto('El container está completo')
         else:
-            if carga.get_peso > self.get_peso_max() and carga.get_medidas > self.get_medidas_int:
+            if (self.get_peso_actual() + Carga.get_peso()) > self.get_peso_max() and carga.get_medidas > self.get_medidas_int:
                 raise CargaExcedeContainer('La carga excede las dimensiones o el peso del container')
             else:
                 return True
@@ -70,11 +77,15 @@ class Container(ABC):
     def cargarContainer(self, Carga):
         #chequear si puede entrar la carga al contenedor
         if self.puedeSubir(self, Carga):
-            #agregar la carga al container
-            self.__carga.append(Carga)
-            self.__completo = True
-        else:
-            self.__completo = False
-
+            self.subirCargaAlContiner(Carga)
+            
+    def subirCargaAlContiner(self, Carga):
+         self.__carga.append(Carga)
+         self.set_peso_actual(Carga.get_peso())
+         if self.get_peso_actual() == self.get_peso_max():
+             self.estaCompleto = True
+        
+        
     def descargar(self):
         self.__carga.clear()
+        self.set_peso_actual(0)
