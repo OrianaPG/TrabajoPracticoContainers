@@ -82,8 +82,7 @@ class Barco(ABC):
         pass
 
     def cargar_container(self, container):
-        if len(self.containers) < self.max_container and self.max_peso >= sum(
-                [cont.peso for cont in self.containers]) + container.peso:
+        if self.puedeSubir():
             self.containers.append(container)
         else:
             raise ContainerExcedePeso('El contenedor excede el peso máximo del barco o el barco está ocupado.')
@@ -99,3 +98,10 @@ class Barco(ABC):
         for c in self.containers:
             peso_containers = peso_containers + c.peso
         return peso_containers
+
+    def puedeSubir(self, container):
+        if len(self.containers) < self.max_container and self.max_peso >= sum(
+                [cont.peso for cont in self.containers]) + container.peso:
+            return True
+        else:
+            return False
