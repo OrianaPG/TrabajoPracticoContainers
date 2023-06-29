@@ -1,4 +1,4 @@
-from Container.Container import Container
+from .Container.Container import Container
 
 class Viaje:
     def __init__(self, contenedor):
