@@ -79,7 +79,7 @@ class Barco(ABC):
 
     @abstractmethod
     def descargar(self):
-        pass
+       self.get_containers().clear() #saca los containers de la lista
 
     def cargar_container(self, container):
         if self.puedeSubir():
