@@ -48,9 +48,6 @@ class Barco(ABC):
     def get_containers(self):
         return self.__containers
 
-    def cargar(self, container):
-        self.__containers.append(container)
-
     # containers = property(get_containers, cargar)
 
     def get_distancia(self):
@@ -82,11 +79,11 @@ class Barco(ABC):
         self.get_containers().clear() #saca los containers de la lista
 
     def cargar_container(self, container):
-        if self.puedeSubir():
+        if self.puedeSubir(container):
             self.containers.append(container)
         else:
-            raise ContainerExcedePeso('El contenedor excede el peso máximo del barco o el barco está ocupado.')
             raise ContainerNoPuedeSubirBarco('El contenedor excede el peso máximo del barco o el barco está ocupado.')
+            # raise ContainerExcedePeso('El contenedor excede el peso máximo del barco o el barco está ocupado.')
     
     def cantidad_containers(self):
         cantidad = 0
@@ -101,8 +98,5 @@ class Barco(ABC):
         return peso_containers
 
     def puedeSubir(self, container):
-        if len(self.containers) < self.max_container and self.max_peso >= sum(
-                [cont.peso for cont in self.containers]) + container.peso:
-            return True
-        else:
-            return False
+        peso_total_containers = self.peso_containers()
+        return len(self.containers) < self.max_container and peso_total_containers + container.peso <=self.max_peso

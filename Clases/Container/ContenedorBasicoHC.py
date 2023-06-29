@@ -1,6 +1,6 @@
 from ..Container.Container import Container
 
-class ConenedorBasicoHC(Container):
+class ContenedorBasicoHC(Container):
     def __init__(self, id):
         super().__init__(id, 230, 235, 245, 120, 260, 121)
         self.set_peso_max(32500)
@@ -8,7 +8,7 @@ class ConenedorBasicoHC(Container):
         self.set_pies(40)
 
     def get_peso_max(self):
-        return self.__peso_max
+        return super().get_peso_max()
     
     def puedeSubir(self, Carga):
         #chequea si puede subir
@@ -17,6 +17,6 @@ class ConenedorBasicoHC(Container):
         
     def cargarContainer(self, Carga):
         #chequear si puede entrar la carga al contenedor
-        if self.puedeSubir(self, Carga):
+        if self.puedeSubir(Carga):
             #agregar la carga al container
             self._completo = True 

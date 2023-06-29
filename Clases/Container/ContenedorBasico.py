@@ -3,12 +3,12 @@ from ..Container.Container import Container
 class ContenedorBasico(Container):
     def __init__(self, id):
         super().__init__(id, 230, 235, 245, 600, 260, 610)
-        self.set_vol_maximo(32.6)
         self.set_peso_max(24000)
+        self.set_vol_maximo(32.6)
         self.set_pies(20)
 
     def get_peso_max(self):
-        return self.__peso_max
+        return super().get_peso_max()
     
     def puedeSubir(self, Carga):
         #chequea si puede subir
@@ -17,6 +17,6 @@ class ContenedorBasico(Container):
         
     def cargarContainer(self, Carga):
         #chequear si puede entrar la carga al contenedor
-        if self.puedeSubir(self, Carga):
+        if self.puedeSubir(Carga):
             #agregar la carga al container
             self._completo = True

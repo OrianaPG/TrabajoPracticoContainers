@@ -70,26 +70,22 @@ class Empresa:
 
     def encontrarBarcoMayorDistancia(self):
         #encontrar el barco que hizo la mayor distancia
-        return max(self.barcos, lambda barco: barco.get_distancia())
-        #tmb se puede hacer asi:
-        # mayorDistancia = -1
-        # barcoMayorDistancia = None
-        # for barco in self.barcos:
-        #     distancia = barco.get_distancia()
-        #     if distancia > mayorDistancia:
-        #         mayorDistancia =distancia
-        #         barcoMayorDistancia = barco
-        # return barcoMayorDistancia
+        mayorDistancia = float('-inf')
+        barcoMayorDistancia = None
+        for barco in self.barcos:
+            distancia = barco.get_distancia()
+            if distancia > mayorDistancia:
+                mayorDistancia =distancia
+                barcoMayorDistancia = barco
+        return barcoMayorDistancia
 
     def encontrarBarcoMenorDistancia(self):
         #encontrar el barco que hizo la menor distancia
-        return min(self.barcos, lambda barco: barco.get_distancia())
-        #tmb se puede hacer asi:
-        # menorDistancia = float('inf') 
-        # barcoMenorDistancia = None
-        # for barco in self.barcos:
-        #     distancia1 = barco.get_distancia()
-        #     if distancia1 < menorDistancia:
-        #         menorDistancia = distancia1
-        #         barcoMenorDistancia = barco
-        # return barcoMenorDistancia
+        menorDistancia = float('inf') 
+        barcoMenorDistancia = None
+        for barco in self.barcos:
+            distancia1 = barco.get_distancia()
+            if distancia1 < menorDistancia:
+                menorDistancia = distancia1
+                barcoMenorDistancia = barco
+        return barcoMenorDistancia
