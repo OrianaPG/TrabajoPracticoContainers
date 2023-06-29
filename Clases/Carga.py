@@ -1,12 +1,13 @@
 from .Medidas import Medidas
 
 class Carga:
-    def __init__(self, id, peso, ancho, largo, alto, volumen):
+    def __init__(self, id, peso, ancho, largo, alto, volumen, tipo):
         self.__id = id
         self.__peso = peso
         self.__medidas = Medidas(ancho, largo, alto)
         self.__carga_especial = False
         self.__volumen = volumen
+        self.__tipo = tipo
 
     def set_medidas(self, ancho, largo, alto):
         self.__medidas.set_ancho(ancho)
@@ -30,3 +31,6 @@ class Carga:
 
     def get_medidas(self):
         return self.__medidas
+        
+    def get_tipo(self): #puede ser alimenticia, química, maquinaria
+        return self.__tipo
