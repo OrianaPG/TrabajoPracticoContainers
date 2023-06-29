@@ -52,7 +52,13 @@ class Container(ABC):
     def getID(self):
         return self.__id
     
+    def puedeSubir(self, Carga):
+        #chequea si puede subir
+        if self.estaCompleto() or Carga.peso > self.get_peso_max(): #falta chequear medidas
+            return False
+        
     def cargarContainer(self, Carga):
         #chequear si puede entrar la carga al contenedor
-        # y si el container esta completo o no
-        pass
+        if self.puedeSubir(self, Carga):
+            #agregar la carga al container
+            self._completo = True
