@@ -36,7 +36,9 @@ class Empresa:
              barco.descargar()
 
 
-    def calcularPrecioEnvio(self, distancia, container_completo, peso, puertaAPuerta):
+    def calcularPrecioEnvio(self, distancia, container , puertaAPuerta):
+        container_completo = container.estaCompleto()
+        peso = container.peso
         if distancia < 100:
             if container_completo:
                 precio = 200000
@@ -62,6 +64,7 @@ class Empresa:
             return precio + 20000
         else: 
             return precio
+
 
     def encontrarContenedorMasViajesCompleto(self):
         #encuentra el contenedor que hizo mas viajes completo
