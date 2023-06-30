@@ -34,16 +34,20 @@ abstract class Barco {
     -tipoDispositivo: string
     -maxCombustible: float
     +containers: list<Contenedor>
+    +precioCombustible: float
 
     +cargar_container(container: Contenedor): void
     +descargar():void
     +puedeSubir(container:Container) Boolean
     +getCantidadContainers(): int
     +getPesoContainers(): float
-    +getCombustibleRestante(): float
-    +getTipoDispositivo(): string
     +cargarCombustible(cantidad: float) : void
     +usarVelas(): void
+    +usarMotor(): void
+    +obtenerTipoDeDispositivo(): string
+    +obtenerCombustibleRestante(): float
+    +consumirCombustible(): void
+    
 }
 
 class BarcoBasico {
@@ -81,6 +85,7 @@ abstract class Contenedor {
     +estaCompleto(): completo
     +cargarContainer(Carga): void
     +descargar(): void
+    +puedeSubir(Carga): boolean
 }
 
 class ContenedorBasico {
@@ -123,6 +128,8 @@ class GPS {
 
 class calculadoraGanancias {
     +calcularGanancias(): float
+    -calcularIngresos(): float
+    -calcularGastos(): float
 }
 
 class Viaje {
