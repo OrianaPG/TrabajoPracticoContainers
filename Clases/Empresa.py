@@ -26,19 +26,24 @@ class Empresa:
     #def enviar_container(self, origen: Sede, destino: Sede, container: Container):
     #   self.viajesContenedor.append(Viaje(container))
 
-    def enviar_barco(self, origen, destino, barco: Barco):
+    def enviar_barco(self, origen, destino, barco: Barco, puertaAPuerta):
         gps = GPSMock()
         tiempo = gps.calcularTiempoEnHoras(origen, destino)
+        distancia = gps.calcularDistancia(origen, destino)
+
         for container in Barco.get_containers():
-             self.viajesContenedor.append(Viaje(container))
+             self.viajesContenedor.append(Viaje(container, distancia, puertaAPuerta))
              barco.consumir_combustible(tiempo)
              container.descargar()
              barco.descargar()
 
-
-    def calcularPrecioEnvio(self, distancia, container , puertaAPuerta):
-        container_completo = container.estaCompleto()
-        peso = container.peso
+    def calcularPrecioEnvio(self, Viaje):
+        
+        distancia = Viaje.distancia
+        puertaAPuerta = Viaje.puertaAPuerta
+        container_completo = Viaje.container.estaCompleto()
+        peso = Viaje.container.peso
+        
         if distancia < 100:
             if container_completo:
                 precio = 200000
