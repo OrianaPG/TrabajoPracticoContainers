@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from ..Excepciones.ContainerNoPuedeSubirBarco import ContainerNoPuedeSubirBarco
 
 class Barco(ABC):
-    def __init__(self, id, max_container, max_peso, max_combustible, tiene_velas):
+    def __init__(self, id, max_container, max_peso, max_combustible, tiene_velas, precioCombustible):
         self.__id = id
         self.__max_container = max_container
         self.__max_peso = max_peso
@@ -19,6 +19,8 @@ class Barco(ABC):
         self.combustible = 0
         self.usandoVela = False
         self.usandoMotor = True
+        self.precioCombustible = precioCombustible
+
 
     def get_id(self):
         return self.__id
@@ -142,7 +144,7 @@ class Barco(ABC):
             print("El barco esta usando velas.")
         else:
             print("El barco esta usando el motor.")
-            consumo_combustible = horas * 6  # Consumo de combustible: 6L por hora
-            if consumo_combustible > self.combustible:
-                consumo_combustible = self.combustible  #el consumo no puede superar el combustible disponible
-            self.combustible -= consumo_combustible
+            self.consumo_combustible = horas * 6  # Consumo de combustible: 6L por hora
+            if self.consumo_combustible > self.combustible:
+                self.consumo_combustible = self.combustible  #el consumo no puede superar el combustible disponible
+            self.combustible -= self.consumo_combustible
