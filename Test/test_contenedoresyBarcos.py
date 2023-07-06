@@ -1,7 +1,7 @@
 from unittest import TestCase
 from ..Clases.Empresa import Empresa
-from ..Clases.Container.ContenedorBasico import ContenedorBasico
-from ..Clases.Barcos.Basico import Basico
+from ..Clases.Container.Container import Container
+from ..Clases.Barcos.Barco import Barco
 from ..Clases.Carga import Carga
 
 class test_contenedoresyBarcos(TestCase):
@@ -15,15 +15,15 @@ class test_contenedoresyBarcos(TestCase):
         carga4 = Carga(4, 5500, 1, 3, 5, 20.5, 'Alimenticia')
         carga5 = Carga(5, 6500, 1, 3, 5, 20.5, 'Alimenticia')
 
-        Container1 = ContenedorBasico('001')
-        Container2 = ContenedorBasico('002')
-        Container3 = ContenedorBasico('003')
-        Container4 = ContenedorBasico('004')
-        Container5 = ContenedorBasico('005')
+        Container1 = Container('001', 1, 2, 1.8, 5, 1.2, 2, 'Alimenticia')
+        Container2 = Container('002', 1, 2, 1.8, 5, 1.2, 2, 'Alimenticia')
+        Container3 = Container('003', 1, 2, 1.8, 5, 1.2, 2, 'Alimenticia')
+        Container4 = Container('004', 1, 2, 1.8, 5, 1.2, 2, 'Alimenticia')
+        Container5 = Container('005', 1, 2, 1.8, 5, 1.2, 2, 'Alimenticia')
 
-        barco1 = Basico('001', 5, 35000)
-        barco2 = Basico('002', 1, 100000)
-        barco3 = Basico('003', 10, 200000)
+        barco1 = Barco('001', 5, 35000, 2500, False, 450)
+        barco2 = Barco('002', 1, 100000, 2500, False, 450)
+        barco3 = Barco('003', 10, 200000, 2500, False, 450)
 
         empresa.agregarBarco(barco1)
         empresa.agregarBarco(barco2)
@@ -67,9 +67,9 @@ class test_contenedoresyBarcos(TestCase):
         empresa = Empresa()  # instancia de la clase Empresa con barcos de prueba
         # Agregar barcos de prueba a la empresa
         
-        barco1 = Basico('001', 5, 35000)
-        barco2 = Basico('002', 1, 100000)
-        barco3 = Basico('003', 10, 200000)
+        barco1 = Barco('001', 5, 35000, 2500, False, 450)
+        barco2 = Barco('002', 1, 100000, 2500, False, 450)
+        barco3 = Barco('003', 10, 200000, 2500, False, 450)
         
         empresa.agregarBarco(barco1)
         empresa.agregarBarco(barco2)
@@ -79,15 +79,15 @@ class test_contenedoresyBarcos(TestCase):
         
 
         #! Devuelve siempre barco1, hay que chequear si está bien cargado
-        #self.assertEqual(BarcoMayorDistancia, barco3)  #verifica
+        self.assertEqual(BarcoMayorDistancia, barco3)  #verifica
 
     def test_encontrar_barco_menor_distancia(self):
         empresa = Empresa()  # Instancia de la clase Empresa con barcos de prueba
         # Agregar barcos de prueba a la empresa
         
-        barco1 = Basico('001', 500, 35000)
-        barco2 = Basico('002', 1000, 100000)
-        barco3 = Basico('003', 2000, 200000)
+        barco1 = Barco('001', 500, 35000, 2500, False, 450)
+        barco2 = Barco('002', 1000, 100000, 2500, False, 450)
+        barco3 = Barco('003', 2000, 200000, 2500, False, 450)
         
         empresa.agregarBarco(barco1)
         empresa.agregarBarco(barco2)

@@ -8,13 +8,13 @@ class ContenedorFlatRack(Container):
         self.set_cont_especial(True)
 
     def get_peso_max(self):
-        return self.__peso_max
+        return super().get_peso_max()
     
     def puedeSubir(self, Carga):
         #chequea si puede subir
         if self.estaCompleto() or Carga.get_peso() > self.get_peso_max() or Carga.get_tipo() == "alimenticia": #falta chequear medidas
             return False
-        else
+        else:
             return True
         
     def cargarContainer(self, Carga):

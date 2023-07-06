@@ -1,10 +1,10 @@
-from abc import ABC
+#from abc import ABC
 
 from ..Barcos.Barco import Barco
 from ..Container.Container import Container
 from ..MockObj.GPSMock import GPSMock
 
-class Basico(Barco, ABC):
+class Basico(Barco):
     def __init__(self, id, max_container, max_peso):
         super().__init__(id, max_container, max_peso)
 
@@ -16,6 +16,7 @@ class Basico(Barco, ABC):
             li.append(cont)
 
             # bajar el peso del contenedor
+            
 
         return li
 

@@ -3,7 +3,7 @@ from .Barcos.Barco import Barco
 from .Camion import Camion
 from .Container.Container import Container
 from .Viaje import Viaje
-from MockObj.GPSMock import GPSMock
+from .MockObj.GPSMock import GPSMock
 
 
 class Empresa:
@@ -32,17 +32,17 @@ class Empresa:
         distancia = gps.calcularDistancia(origen, destino)
 
         for container in Barco.get_containers():
-             self.viajesContenedor.append(Viaje(container, distancia, puertaAPuerta))
-             barco.consumir_combustible(tiempo)
-             container.descargar()
-             barco.descargar()
+            self.viajesContenedor.append(Viaje(container, distancia, puertaAPuerta))
+            barco.consumir_combustible(tiempo)
+            container.descargar()
+            barco.descargar()
 
-    def calcularPrecioEnvio(self, Viaje):
+    def calcularPrecioEnvio(self, viaje: Viaje):
         
-        distancia = Viaje.distancia
-        puertaAPuerta = Viaje.puertaAPuerta
-        container_completo = Viaje.container.estaCompleto()
-        peso = Viaje.container.peso
+        distancia = viaje.getDistancia()
+        puertaAPuerta = viaje.getPuertaAPuerta()
+        container_completo = viaje.getContenedorLleno()
+        peso = float(viaje.getContenedor().get_peso_actual())
         
         if distancia < 100:
             if container_completo:

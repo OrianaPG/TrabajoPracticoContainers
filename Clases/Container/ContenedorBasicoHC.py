@@ -14,6 +14,8 @@ class ContenedorBasicoHC(Container):
         #chequea si puede subir
         if self.estaCompleto() or Carga.get_peso() > self.get_peso_max() or Carga.get_tipo() == "alimenticia": #falta chequear medidas
             return False
+        else:
+            return True
         
     def cargarContainer(self, Carga):
         #chequear si puede entrar la carga al contenedor

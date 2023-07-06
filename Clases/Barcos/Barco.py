@@ -1,7 +1,8 @@
-from abc import ABC, abstractmethod
+#from abc import ABC, abstractmethod
 from ..Excepciones.ContainerNoPuedeSubirBarco import ContainerNoPuedeSubirBarco
+from ..MockObj.GPSMock import GPSMock
 
-class Barco(ABC):
+class Barco():
     def __init__(self, id, max_container, max_peso, max_combustible, tiene_velas, precioCombustible):
         self.__id = id
         self.__max_container = max_container
@@ -79,13 +80,15 @@ class Barco(ABC):
     def set_sede_fin(self, sede):
         self.__sede_destino = sede
 
-    @abstractmethod
+    # @abstractmethod
     def kilometros_recorridos(self, inicio, destino):
-        pass
+        distancia = GPSMock(inicio, destino)
+        self.set_distancia(self.get_distancia() + distancia)
+        return distancia
 
-    @abstractmethod
+    # @abstractmethod
     def descargar(self):
-        self.get_containers().clear() #saca los containers de la lista
+        self.get_containers().clear() #saca los containers de la lista #? no baja el peso
 
     def cargar_container(self, container):
         if self.puedeSubir(container):

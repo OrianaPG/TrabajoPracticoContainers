@@ -7,11 +7,20 @@
 
 ## To do
 
-- [x] Cambiar nombre excepción ContainerExcedePeso()
-- [x] Crear excepción de CargaExcedeContainer
-- [x] Hacer más legible la función cargar_container de Barco
-- [x] Actualizar el diagrama de clases con todas las funciones
-- [x] Crear función que "calcule" la distancia recorrida (Mock, barco)
+### Tests
+
+El precio que debe pagar un cliente por enviar una carga si:
+
+- [ ] Cliente retira la carga en el puerto.
+- [ ] Cliente contrata servicio puerta a puerta.
+- [ ] Utiliza container completo.
+- [ ] Utiliza sólo una porción del container.
+
+Viajes
+
+- [ ]  El container que mayor cantidad de veces viajó completo con una única carga.
+- [ ] El barco que recorrió la mayor cantidad de Km.
+- [ ] El barco que recorrió la menor cantidad de Km.
 
 ## Introducción
 
